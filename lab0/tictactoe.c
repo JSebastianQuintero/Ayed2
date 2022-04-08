@@ -27,6 +27,13 @@ char get_winner(char board[BOARD_SIZE][BOARD_SIZE])
     char winner = '-';
 
     // IMPLEMENTAR
+    for (unsigned int i = 0; i < BOARD_SIZE; i++){
+        if (board[0][i] == board[1][i] && board[0][i] == board[2][i]) winner = board[0][i]; // chequeo vertical 
+        if (board[i][0] == board[i][1] && board[i][0] == board[i][2]) winner = board[i][0]; // chequeo horizontal
+    }
+    if (board[0][0] == board[1][1] && board[0][0] == board[2][2]) winner = board[0][0];     // chequeo diagonal 
+    if (board[0][2] == board[1][1] && board[2][0] == board[0][2]) winner = board[0][2];     // chequeo diagonal invertido
+    
 
     return winner;
 }
@@ -34,10 +41,15 @@ char get_winner(char board[BOARD_SIZE][BOARD_SIZE])
 bool has_free_cell(char board[BOARD_SIZE][BOARD_SIZE])
 {
     board = board;
-
+    bool free_cell = false;                             // defino que no hay celdas vacias
     // IMPLEMENTAR
+    for (unsigned int i=0; i<BOARD_SIZE; i++){
+        for(unsigned int j=0; j<BOARD_SIZE; j++){
+            if (board[i][j] == '-') free_cell = true;  // busco una celda vacia si la encuentro cambio el resultado
+        }
+    }
 
-    return true;
+    return free_cell;
 }
 
 int main(void)
