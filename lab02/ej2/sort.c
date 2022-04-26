@@ -14,6 +14,12 @@ static void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
        (no se puede leer, pero en sort_helpers.h vas a encontrar información
         para saber cómo usarlo)
     */
+    if (der > izq){
+        printf("izq:%d, der:%d\n", izq, der);
+        unsigned int ppiv = partition(a, izq, der);
+        quick_sort_rec(a, izq, (ppiv == 0u) ? 0u : ppiv - 1u);
+        quick_sort_rec(a, ppiv+1, der);
+    }
 }
 
 void quick_sort(int a[], unsigned int length) {
